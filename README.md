@@ -1,0 +1,2 @@
+# Quantum-trapping-attackers
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c479fd5954f645b3b5f83611f4975a1b)](https://app.codacy.com/gh/namkcits/Quantum-trapping-attackers?utm_source=github.com&utm_medium=referral&utm_content=namkcits/Quantum-trapping-attackers&utm_campaign=Badge_Grade)
