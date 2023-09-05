@@ -39,5 +39,7 @@ def main():
     decode_and_correct()  # Decode and correct errors using the Shor code
 
     # Continue with your cybersecurity logic and response mechanisms
+
+
 if __name__ == "__main__":
-    main()  # Run the main function
+main()  # Run the main function
