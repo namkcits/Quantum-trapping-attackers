@@ -40,6 +40,4 @@ def main():
 
     # Continue with your cybersecurity logic and response mechanisms
 
-
-if __name__ == "__main__":
 main()  # Run the main function
