@@ -40,4 +40,3 @@ def main():
 
     # Continue with your cybersecurity logic and response mechanisms
 
-main()  # Run the main function
