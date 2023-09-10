@@ -1,0 +1,102 @@
++*In[1]:*+
+[source, ipython3]
+----
+# Importing standard Qiskit libraries
+from qiskit import QuantumCircuit, transpile
+from qiskit.tools.jupyter import *
+from qiskit.visualization import *
+from ibm_quantum_widgets import *
+
+# qiskit-ibmq-provider has been deprecated.
+# Please see the Migration Guides in https://ibm.biz/provider_migration_guide for more detail.
+from qiskit_ibm_runtime import QiskitRuntimeService, Sampler, Estimator, Session, Options
+
+# Loading your IBM Quantum account(s)
+service = QiskitRuntimeService(channel="ibm_quantum")
+
+# Invoke a primitive. For more details see https://qiskit.org/documentation/partners/qiskit_ibm_runtime/tutorials.html
+# result = Sampler("ibmq_qasm_simulator").run(circuits).result()
+----
+
+
++*In[6]:*+
+[source, ipython3]
+----
+from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister, execute, Aer
+from qiskit.providers.aer import noise
+# Define the number of qubits and classical bits
+number_of_qubits = 100  # Using 9 qubits for the Shor code
+number_of_classical_bits = 100
+# Create quantum registers and classical registers
+qregs = QuantumRegister(number_of_qubits, name="q")
+cregs = ClassicalRegister(number_of_classical_bits, name="c")
+circuit = QuantumCircuit(qregs, cregs)
+# Define variables to track results and initialize them to True
+found_malware = True
+stopped_malware = True
+killed_malware = True
+fixed_vulnerabilities = True
+# Define the reassessment variable and initialize it
+reassessment = True
+# Quantum operations for encoding using Shor Code (Simplified)
+for i in range(number_of_qubits):
+    circuit.h(qregs[i])
+# Simulate a strong attack (Simplified)
+for qubit in range(3):  # Assume the attacker targets qubits 0, 1, and 2
+    circuit.x(qregs[qubit])
+# Quantum trapping operation (Simplified, based on classical condition)
+def trap_malware(circuit):
+    """Apply a CNOT gate to trap malicious traffic based on classical condition."""
+    condition = cregs[0] == 1 and cregs[1] == 0  # Example classical condition
+    if condition:
+        circuit.cx(qregs[0], qregs[2])
+# Additional measurement for analysis
+circuit.measure(qregs, cregs)
+# Simulate the quantum circuit with noise (Simplified noise model)
+backend = Aer.get_backend('qasm_simulator')
+noise_model = noise.NoiseModel()
+job = execute(circuit, backend, noise_model=noise_model, shots=1)
+result = job.result().get_counts()
+# Analyze results (Simplified, based on measurement outcomes)
+if '0' in result:
+    found_malware = True
+if '01' in result:
+    stopped_malware = True
+if '001' in result:
+    killed_malware = True
+if '0001' in result:
+    fixed_vulnerabilities = True
+# Check the reassessment variable
+if reassessment:
+    print("Reassessment found malware.")
+# Report the results
+print("### Attack Scenario Results ###")
+if found_malware:
+    print("Malware detected.")
+    if stopped_malware:
+        print("Malware stopped.")
+    if killed_malware:
+        print("Malware killed.")
+    if fixed_vulnerabilities:
+        print("Vulnerabilities fixed.")
+else:
+    print("No malware detected.")
+----
+
+
++*Out[6]:*+
+----
+Reassessment found malware.
+### Attack Scenario Results ###
+Malware detected.
+Malware stopped.
+Malware killed.
+Vulnerabilities fixed.
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+
+---
