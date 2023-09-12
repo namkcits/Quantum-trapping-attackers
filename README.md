@@ -25,3 +25,4 @@ The provided Python script conducts a quantum security assessment with the follo
 
 [...]
 stephen vega 'namkcits' helped by chat gpt
+<a href="https://codebeat.co/projects/github-com-namkcits-quantum_malware_defence-master"><img alt="codebeat badge" src="https://codebeat.co/badges/ed855e0f-a9ad-4b89-a3c9-85b5d0ed273c" /></a>
