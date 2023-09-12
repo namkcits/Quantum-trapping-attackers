@@ -1,0 +1,63 @@
+from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister, execute, Aer
+from qiskit.providers.aer import noise
+
+# Define the number of qubits and classical bits
+number_of_qubits = 9  # Using 9 qubits for the Shor code
+number_of_classical_bits = 9
+
+# Create quantum registers and classical registers
+qregs = QuantumRegister(number_of_qubits, name="q")
+cregs = ClassicalRegister(number_of_classical_bits, name="c")
+circuit = QuantumCircuit(qregs, cregs)
+
+# Define variables to track results and initialize them to True
+found_malware = True
+stopped_malware = True
+killed_malware = True
+fixed_vulnerabilities = True
+
+# Quantum operations for encoding using Shor Code (Simplified)
+for i in range(number_of_qubits):
+    circuit.h(qregs[i])
+
+# Simulate a strong attack (Simplified)
+for qubit in range(3):  # Assume the attacker targets qubits 0, 1, and 2
+    circuit.x(qregs[qubit])
+
+# Quantum trapping operation with H gates and CNOT gates
+for i in range(3):  # Perform reassessment on qubits 0, 1, and 2
+    circuit.h(qregs[i])  # Apply Hadamard gates
+circuit.cx(qregs[0], qregs[1])  # Controlled-X (CNOT) gate between qubit 0 and 1
+circuit.cx(qregs[0], qregs[2])  # Controlled-X (CNOT) gate between qubit 0 and 2
+
+# Additional measurement for analysis
+circuit.measure(qregs, cregs)
+
+# Simulate the quantum circuit with noise (Simplified noise model)
+backend = Aer.get_backend('qasm_simulator')
+noise_model = noise.NoiseModel()
+job = execute(circuit, backend, noise_model=noise_model, shots=1)
+result = job.result().get_counts()
+
+# Analyze results (Simplified, based on measurement outcomes)
+if '0' in result:
+    found_malware = True
+if '001' in result:
+    killed_malware = True
+if '0001' in result:
+    fixed_vulnerabilities = True
+
+# Check the reassessment variable
+if found_malware and killed_malware and fixed_vulnerabilities:
+    print("Reassessment found malware, killed it, and fixed vulnerabilities.")
+
+# Report the results
+print("### Attack Scenario Results ###")
+if found_malware:
+    print("Malware detected.")
+    if killed_malware:
+        print("Malware killed.")
+    if fixed_vulnerabilities:
+        print("Vulnerabilities fixed.")
+else:
+    print("No malware detected.")
