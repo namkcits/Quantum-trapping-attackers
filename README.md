@@ -22,6 +22,7 @@ This script has been executed on the IBM Quantum platform to verify its function
 ## Script Description
 
 The provided Python script conducts a quantum security assessment with the following steps:
+this is intended for educationnal use and collaboration you can tailor ot to detect differnt attacks collaboration is wanted exoerts are needed lets gight back aganst makware attacks remanber to use this and tailor to fit into your project
 
 [...]
 stephen vega 'namkcits' helped by chat gpt
